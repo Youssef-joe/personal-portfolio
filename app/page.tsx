@@ -4,15 +4,17 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Terminal, Server, Database, Code, Globe } from 'lucide-react';
+import { Github, Linkedin, Mail, Terminal, Server, Database, Code, Globe, Link } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const headerRef = useRef(null);
   const skillsRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -41,6 +43,10 @@ export default function Home() {
 
     return () => ctx.revert();
   }, []);
+
+  const handleClick = () => {
+    router.push("/projects")
+  }
 
   const skills = [
     { icon: <Terminal className="w-10 h-10" />, title: "Node.js", description: "Expert in building scalable backend services" },
@@ -81,9 +87,11 @@ export default function Home() {
             <Button size="lg" variant="default">
               <Mail className="mr-2 h-4 w-4" /> Contact Me
             </Button>
-            <Button size="lg" variant="outline">
-              View Projects
+
+            <Button size="lg" variant="outline" onClick={handleClick}>
+               View Projects
             </Button>
+            
           </motion.div>
         </div>
       </section>
@@ -110,7 +118,7 @@ export default function Home() {
       <footer className="py-8 border-t">
         <div className="container mx-auto px-4">
           <div className="flex justify-center gap-6">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://github.com/Youssef-joe" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               <Github className="w-6 h-6" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
